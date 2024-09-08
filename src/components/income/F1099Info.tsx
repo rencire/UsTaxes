@@ -59,6 +59,10 @@ const showIncome = (a: Supported1099): ReactElement => {
         </span>
       )
     }
+    // TODO add 1099-G
+    case Income1099Type.G: {
+      return <span>Test</span>
+    }
     case Income1099Type.SSA: {
       return (
         <span>
@@ -145,6 +149,9 @@ const toUserInput = (f: Supported1099): F1099UserInput => ({
       case Income1099Type.DIV: {
         return f.form
       }
+      case Income1099Type.G: {
+        return f.form
+      }
       case Income1099Type.R: {
         return f.form
       }
@@ -191,6 +198,16 @@ const toF1099 = (input: F1099UserInput): Supported1099 | undefined => {
           totalCapitalGainsDistributions: Number(
             input.totalCapitalGainsDistributions
           )
+        }
+      }
+    }
+    case Income1099Type.G: {
+      return {
+        payer: input.payer,
+        personRole: input.personRole ?? PersonRole.PRIMARY,
+        type: input.formType,
+        form: {
+          test: 1
         }
       }
     }
@@ -328,6 +345,12 @@ export default function F1099Info(): ReactElement {
     </Grid>
   )
 
+  const gFields = (
+    <Grid container spacing={2}>
+      <div> test </div>
+    </Grid>
+  )
+
   const rFields = (
     <Grid container spacing={2}>
       <Alert severity="warning">
@@ -398,6 +421,7 @@ export default function F1099Info(): ReactElement {
     [Income1099Type.INT]: intFields,
     [Income1099Type.B]: bFields,
     [Income1099Type.DIV]: divFields,
+    [Income1099Type.G]: gFields,
     [Income1099Type.R]: rFields,
     [Income1099Type.SSA]: ssaFields
   }
@@ -406,6 +430,7 @@ export default function F1099Info(): ReactElement {
     [Income1099Type.INT]: '1099-INT',
     [Income1099Type.B]: '1099-B',
     [Income1099Type.DIV]: '1099-DIV',
+    [Income1099Type.G]: '1099-G',
     [Income1099Type.R]: '1099-R',
     [Income1099Type.SSA]: 'SSA-1099'
   }

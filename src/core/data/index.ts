@@ -116,6 +116,7 @@ export enum Income1099Type {
   B = 'B',
   INT = 'INT',
   DIV = 'DIV',
+  G = 'G',
   R = 'R',
   SSA = 'SSA'
 }
@@ -160,6 +161,11 @@ export const PlanType1099Texts: { [k in keyof typeof PlanType1099]: string } = {
   SepIRA: 'simplified employee pension (SEP) IRA',
   SimpleIRA: 'savings incentive match plan for employees (SIMPLE) IRA',
   Pension: '401(k), 403(b), or 457(b) plan'
+}
+
+// TODO
+export interface F1099GData {
+  test: number
 }
 
 export interface F1099RData {
@@ -360,6 +366,7 @@ export type TaxPayerDateString = TaxPayer<string>
 export type Income1099Int = Income1099<Income1099Type.INT, F1099IntData>
 export type Income1099B = Income1099<Income1099Type.B, F1099BData>
 export type Income1099Div = Income1099<Income1099Type.DIV, F1099DivData>
+export type Income1099G = Income1099<Income1099Type.G, F1099GData>
 export type Income1099R = Income1099<Income1099Type.R, F1099RData>
 export type Income1099SSA = Income1099<Income1099Type.SSA, F1099SSAData>
 
@@ -367,6 +374,7 @@ export type Supported1099 =
   | Income1099Int
   | Income1099B
   | Income1099Div
+  | Income1099G
   | Income1099R
   | Income1099SSA
 
