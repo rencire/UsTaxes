@@ -285,7 +285,7 @@ export default class F6251 extends F1040Attachment {
     const l19Value: { [k in FilingStatus]: number } = {
       [FilingStatus.MFJ]: 89950,
       [FilingStatus.W]: 89950,
-      [FilingStatus.S]: 446275,
+      [FilingStatus.S]: 44625,
       [FilingStatus.MFS]: 44625,
       [FilingStatus.HOH]: 59750
     }
