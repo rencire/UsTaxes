@@ -2,6 +2,7 @@ import {
   FilingStatus,
   Income1099B,
   Income1099Div,
+  Income1099G,
   Income1099Int,
   Income1099R,
   Income1099SSA,
@@ -108,6 +109,9 @@ export default abstract class F1040Base extends Form {
 
   f1099Bs = (): Income1099B[] =>
     this.f1099sByType(Income1099Type.B) as Income1099B[]
+
+  f1099Gs = (): Income1099G[] =>
+    this.f1099sByType(Income1099Type.G) as Income1099G[]
 
   f1099rs = (): Income1099R[] =>
     this.f1099sByType(Income1099Type.R) as Income1099R[]

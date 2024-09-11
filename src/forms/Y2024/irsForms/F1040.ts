@@ -316,6 +316,12 @@ export default class F1040 extends F1040Base {
       .filter((element) => element.form.planType === planType)
       .reduce((res, f1099) => res + f1099.form.taxableAmount, 0)
 
+  totalUnemploymentCompensationFrom1099G = (): number =>
+    this.f1099Gs().reduce(
+      (res, f1099) => res + f1099.form.unemploymentCompensation,
+      0
+    )
+
   l1a = (): number => this.wages()
   l1b = (): number | undefined => undefined
   l1c = (): number | undefined => undefined
@@ -429,6 +435,10 @@ export default class F1040 extends F1040Base {
 
   // tax withheld from 1099s
   l25b = (): number =>
+    this.f1099Gs().reduce(
+      (res, f1099) => res + f1099.form.federalIncomeTaxWithheld,
+      0
+    ) +
     this.f1099rs().reduce(
       (res, f1099) => res + f1099.form.federalIncomeTaxWithheld,
       0

@@ -59,9 +59,16 @@ const showIncome = (a: Supported1099): ReactElement => {
         </span>
       )
     }
-    // TODO add 1099-G
     case Income1099Type.G: {
-      return <span>Test</span>
+      return (
+        <span>
+          Unemployemnt Compensation:{' '}
+          <Currency value={a.form.unemploymentCompensation} />
+          <br />
+          Federal Income Tax Withheld:{' '}
+          <Currency value={a.form.federalIncomeTaxWithheld} />
+        </span>
+      )
     }
     case Income1099Type.SSA: {
       return (
@@ -95,6 +102,8 @@ interface F1099UserInput {
   qualifiedDividends: string | number
   totalCapitalGainsDistributions: string | number
   personRole?: PersonRole.PRIMARY | PersonRole.SPOUSE
+  // G fields
+  unemploymentCompensation: string | number
   // R fields
   grossDistribution: string | number
   taxableAmount: string | number
@@ -119,6 +128,8 @@ const blankUserInput: F1099UserInput = {
   dividends: '',
   qualifiedDividends: '',
   totalCapitalGainsDistributions: '',
+  // G fields
+  unemploymentCompensation: '',
   // R fields
   grossDistribution: '',
   taxableAmount: '',
@@ -207,7 +218,8 @@ const toF1099 = (input: F1099UserInput): Supported1099 | undefined => {
         personRole: input.personRole ?? PersonRole.PRIMARY,
         type: input.formType,
         form: {
-          test: 1
+          unemploymentCompensation: Number(input.unemploymentCompensation),
+          federalIncomeTaxWithheld: Number(input.federalIncomeTaxWithheld)
         }
       }
     }
@@ -347,7 +359,16 @@ export default function F1099Info(): ReactElement {
 
   const gFields = (
     <Grid container spacing={2}>
-      <div> test </div>
+      <LabeledInput
+        label={boxLabel('1', 'Unemployment Compensation')}
+        patternConfig={Patterns.currency}
+        name="unemploymentCompensation"
+      />
+      <LabeledInput
+        label={boxLabel('4', 'Federal Income Tax Withheld')}
+        patternConfig={Patterns.currency}
+        name="federalIncomeTaxWithheld"
+      />
     </Grid>
   )
 

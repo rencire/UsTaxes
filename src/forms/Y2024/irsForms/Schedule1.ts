@@ -29,7 +29,8 @@ export default class Schedule1 extends F1040Attachment {
   l4 = (): number | undefined => undefined
   l5 = (): number | undefined => this.f1040.scheduleE.l41()
   l6 = (): number | undefined => undefined
-  l7 = (): number | undefined => undefined
+  l7 = (): number | undefined =>
+    this.f1040.totalUnemploymentCompensationFrom1099G()
   l8a = (): number | undefined => undefined
   l8b = (): number | undefined => undefined
   l8c = (): number | undefined => undefined

@@ -163,9 +163,9 @@ export const PlanType1099Texts: { [k in keyof typeof PlanType1099]: string } = {
   Pension: '401(k), 403(b), or 457(b) plan'
 }
 
-// TODO
 export interface F1099GData {
-  test: number
+  unemploymentCompensation: number
+  federalIncomeTaxWithheld: number
 }
 
 export interface F1099RData {
